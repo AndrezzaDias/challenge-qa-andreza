@@ -70,7 +70,7 @@ Demonstre conhecimento em testes de carga e performance:
   - Validações realizadas  
   - Qualidade no report de bugs  
 
-- **Diferencial:(Etapas 2 e 3):**  
+- **Diferencial (Etapas 2 e 3):**  
   - Uso de recursos do Reqnroll e Selenium para automação  
   - Componentização dos elementos das páginas com Selenium  
   - Execução dos testes em paralelo em diferentes navegadores  
