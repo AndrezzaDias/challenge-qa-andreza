@@ -1,92 +1,157 @@
 # +A Educação - Time de Qualidade
 [![N|Solid](https://maisaedu.com.br/hubfs/site-grupo-a/logo-mais-a-educacao.svg)](https://maisaedu.com.br/)  
 
-# Challenge-QA  
+# Challenge QA – +A Educação
 
-O objetivo deste desafio é avaliar principalmente as competências de **análise e escrita de cenários de testes**, mas também será **muito valorizado** demonstrar conhecimento prático em automação e performance.  
+Este repositório contém o desafio técnico de QA do time de Qualidade da +A Educação.
+O objetivo deste challenge é avaliar principalmente as competências de análise, identificação de regras de negócio e escrita de cenários de testes, utilizando Gherkin como linguagem padrão.
+Também serão valorizados conhecimentos práticos em automação de testes e testes de performance, desde que os cenários documentados em Gherkin sejam reutilizados nessas etapas.
 
----
+## 🎯 Objetivo Geral
+Avaliar a capacidade do(a) candidato(a) de:
 
-## Etapa 1 – Documentação (Obrigatória)  
-1.1. Crie um Projeto .Net para a **documentação dos cenários de testes**.  
+Analisar uma aplicação real
+Identificar regras, requisitos e validações
+Documentar cenários de testes ocm o comportamento do sistema de forma clara e objetiva
+Reportar bugs com qualidade
+Reutilizar os cenários Gherkin em automação
+Demonstrar conhecimentos em testes de carga e performance
 
-**Especificações Técnicas (para documentação e escrita):**  
-- Projeto em .Net8.0  
-- Reqnroll  
-- Nunit  
+## 🧩 Estrutura do Desafio
+O desafio está dividido em 3 etapas:
 
-1.2. Explore os fluxos presentes na aplicação Subscriptions e identifique regras e requisitos.  
-   - Acesse a aplicação [aqui](https://developer.grupoa.education/subscription).  
-   - Caso encontre algo que considere bug, reporte em um arquivo chamado `BUGS.md`.  
+Etapa 1 – Documentação (Obrigatória)
+Etapa 2 – Automação (Obrigatória)
+Etapa 3 – Performance (Obrigatória)
 
-1.3. Utilizando todos os elementos do Gherkin, descreva em cenários as regras e requisitos identificados no item 1.2.  
-   - Os cenários devem ser versionados no projeto .Net criado no item 1.1, seguindo os padrões do Reqnroll.  
 
-1.4. Inclua um arquivo chamado `DATA.md` descrevendo a estratégia que você utilizaria em relação à criação e uso da massa de dados de testes (considerando futura persistência em PostgreSQL).  
+### ✅ Etapa 1 – Documentação (Obrigatória)
+1.1 Projeto de documentação de cenários
+Crie um projeto dedicado à documentação dos cenários de testes, utilizando Gherkin como linguagem de especificação.
+Requisitos obrigatórios:
 
-👉 **Entrega obrigatória mínima:** análise, escrita, documentação e report de bugs.  
+Todos os cenários devem ser escritos em Gherkin (usando corretamente todos os elementos do Gherkin) e considerando todas as boas práticas de escrita de cenários.
+Aplicar a técnica BRIEF na escrita de cenários
 
----
+1.2 Análise da aplicação
+Analise os fluxos da aplicação Subscriptions, disponível em:
+🔗 https://developer.grupoa.education/subscription
+Durante a análise, identifique:
 
-## Etapa 2 – Automação (Muito valorizado)  
-Para se destacar, demonstre conhecimento em automação dos cenários:  
+Regras de negócio
+Requisitos funcionais e não funcionais
+Validações explícitas e implícitas
+Fluxos principais e alternativos
 
-2.1. Utilizando os cenários descritos na Etapa 1, implemente a automação dos mesmos com:  
-- Reqnroll  
-- Selenium  
-- NUnit  
+Caso identifique comportamentos inesperados ou inconsistências, registre-os conforme descrito no item 1.5.
 
-2.2. Diferencial:  
-- Componentizar os elementos das páginas com Selenium e reutilizar estes componentes na automação.  
-- Execução dos testes em paralelo utilizando 3 diferentes navegadores.  
-- Utilizar Selenium Grid com Docker Compose.  
+1.3 Escrita dos cenários
+Com base na análise realizada:
 
----
+Descreva os cenários de teste utilizando Gherkin
+Os cenários devem representar as regras e requisitos identificados
+A escrita deve ser clara, objetiva e focada em comportamento
+Os arquivos devem seguir o padrão de projetos com Gherkin
 
-## Etapa 3 – Performance (Muito valorizado)  
-Demonstre conhecimento em testes de carga e performance:  
+1.4 Estratégia de dados de teste
+Crie um arquivo chamado DATA.md, descrevendo a estratégia para:
 
-3.1. Criar ao menos 3 cenários de teste de performance simulando cargas de 100, 500 e 1000 usuários simultâneos.  
-   - Teste, no mínimo, os seguintes endpoints:  
-     - `/flip_coin.php`  
-     - `/my_messages.php`  
+Criação da massa de dados de testes
+Reutilização e isolamento de dados
+Considerações para futura persistência em PostgreSQL
+Exclusão da massa de dados
 
-3.2. Criar um projeto de teste de carga usando k6 para avaliar as APIs disponíveis [aqui](https://test.k6.io/).  
+1.5 Report de Bugs
+Crie um arquivo chamado BUGS.md para documentar todos os bugs encontrados durante a análise.
 
-   - 3.2.1. Crie scripts de teste com k6 para os cenários criados no item 3.1.  
-   - 3.2.2. Descreva em um arquivo chamado `k6-data.md` a estratégia de massa de dados de testes com o K6.  
-   - 3.2.3. Gere os resultados em HTML e envie junto com relatório de análise de desempenho.  
+✅ Entrega mínima obrigatória da Etapa 1
 
----
+Análise dos fluxos
+Cenários documentados em Gherkin
+Estratégia de dados de teste (DATA.md)
+Report de bugs (BUGS.md)
 
-# Critérios de avaliação  
-- **Obrigatório (Etapa 1):**  
-  - Cenários identificados  
-  - Bugs identificados  
-  - Qualidade da escrita e uso adequado da sintaxe Gherkin  
-  - Aplicação da técnica BRIEF  
-  - Boas práticas de escrita de cenários  
-  - Organização do projeto  
-  - Validações realizadas  
-  - Qualidade no report de bugs  
 
-- **Diferencial (Etapas 2 e 3):**  
-  - Uso de recursos do Reqnroll e Selenium para automação  
-  - Componentização dos elementos das páginas com Selenium  
-  - Execução dos testes em paralelo em diferentes navegadores  
-  - Testes de performance com k6 
-  - Utilizar Selenium Grid com Docker Compose  
-  - Entregar todas as atividades propostas da Etapa 3  
+### 🤖 Etapa 2 – Automação (Obrigatória)
+O objetivo desta etapa é demonstrar que os cenários escritos em Gherkin podem ser automatizados e reutilizados como contrato de comportamento.
 
----
+2.1 Automação dos cenários
 
-# Instruções de entrega  
-1. Crie um fork do repositório no seu GitHub, deixando a visibilidade do projeto como pública.  
-2. Faça o push do código/documentação desenvolvidos no seu GitHub.  
-3. Inclua um arquivo chamado `COMMENTS.md` explicando:  
-   - Decisões da arquitetura utilizada  
-   - Lista de bibliotecas de terceiros utilizadas  
-   - O que você melhoraria se tivesse mais tempo  
-   - Quais requisitos obrigatórios não foram entregues  
-4. Você tem 7 dias para entregar o desafio. Informe ao recrutador quando concluí-lo, enviando junto o link do repositório.  
-5. Após revisão do projeto junto com a equipe técnica, deixe seu repositório privado.  
+Utilize os mesmos arquivos Gherkin criados na Etapa 1
+Implemente a automação respeitando fielmente o comportamento descrito
+A escolha da stack de automação é livre (Selenium, Playwright, etc.)
+
+2.2 Diferenciais técnicos (opcional, mas valorizado)
+
+- Componentização e reutilização de elementos de página
+- Execução de testes em paralelo
+- Execução em múltiplos navegadores (mínimo de 3)
+- Uso de Docker para orquestração do ambiente de testes
+- Caso utilize Selenium, configuração de Selenium Grid com Docker Compose
+
+
+### ⚡ Etapa 3 – Performance (Obrigatória)
+3.1 Cenários de carga
+Crie ao menos 3 cenários de teste de performance, simulando:
+
+100 usuários simultâneos
+500 usuários simultâneos
+1000 usuários simultâneos
+
+Escreva para, no mínimo, os seguintes endpoints:
+
+/flip_coin.php
+/my_messages.php
+
+
+3.2 Testes de performance com k6
+Crie um projeto de testes de carga utilizando k6, com base nas APIs disponíveis em:
+🔗 https://test.k6.io/
+
+3.2.1 Scripts
+
+Desenvolva scripts de teste para os cenários definidos no item 3.1
+
+3.2.2 Massa de dados
+
+Crie um arquivo chamado k6-data.md, descrevendo a estratégia de massa de dados utilizada nos testes de performance
+
+3.2.3 Resultados e análise
+
+Gere relatórios em HTML
+Inclua uma análise de desempenho destacando tempos de resposta, erros e comportamento sob carga
+
+
+## 📊 Critérios de Avaliação
+Obrigatórios (Etapa 1)
+
+Identificação correta de regras e cenários
+Qualidade da escrita dos cenários em Gherkin
+Uso adequado da sintaxe Gherkin
+Aplicação da técnica BRIEF
+Organização do projeto
+Qualidade do report de bugs
+
+Diferenciais (Etapas 2 e 3)
+
+Reutilização dos cenários Gherkin na automação
+Boas práticas de automação
+Execução paralela e cross-browser
+Testes de performance bem estruturados com k6
+
+
+## 📦 Instruções de Entrega
+Crie um fork deste repositório em seu GitHub (repositório público).
+Desenvolva o desafio conforme as etapas descritas.
+Faça o push de todo o código e documentação.
+Crie um arquivo chamado COMMENTS.md, contendo:
+
+Decisões de arquitetura
+Bibliotecas e ferramentas utilizadas
+O que você melhoraria se tivesse mais tempo
+Requisitos obrigatórios não entregues (se houver)
+
+
+Você terá 7 dias para concluir o desafio.
+Ao finalizar, informe o recrutador enviando o link do repositório.
+Após a avaliação técnica, o repositório deverá ser tornado privado.
