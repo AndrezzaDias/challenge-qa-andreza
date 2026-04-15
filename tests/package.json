@@ -1,0 +1,25 @@
+{
+  "name": "challenge-qa-grupoa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bddgen": "npx bddgen",
+    "test": "npx playwright test",
+    "test:all": "npx bddgen && npx playwright test",
+    "test:view": "npx bddgen && npx playwright test --headed",
+    "test:ui": "npx bddgen && npx playwright test --config=playwright.config.ts --ui --headed",
+    "test:interactive": "npx bddgen && npx playwright test --debug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.8.1",
+    "@faker-js/faker": "^9.9.0",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "playwright-bdd": "^8.5.0",
+    "ts-node": "^10.9.2"
+  }
+}

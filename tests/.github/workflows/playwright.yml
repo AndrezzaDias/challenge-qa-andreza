@@ -1,0 +1,166 @@
+name: Playwright BDD Tests — +A Educação
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  # Permite rodar manualmente pela aba "Actions" no GitHub
+  workflow_dispatch:
+
+jobs:
+  # ──────────────────────────────────────────────────────────────────
+  # JOB 1: Chromium
+  # ──────────────────────────────────────────────────────────────────
+  test-chromium:
+    name: 🟡 Chromium
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar browsers do Playwright
+        run: npx playwright install chromium --with-deps
+
+      - name: Gerar specs BDD
+        run: npx bddgen
+
+      - name: Executar testes — Chromium
+        run: npx playwright test --project=chromium
+
+      - name: Upload do relatório — Chromium
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-chromium
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload dos resultados JUnit — Chromium
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: junit-results-chromium
+          path: test-results/junit.xml
+          retention-days: 30
+
+  # ──────────────────────────────────────────────────────────────────
+  # JOB 2: Firefox
+  # ──────────────────────────────────────────────────────────────────
+  test-firefox:
+    name: 🟠 Firefox
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar browsers do Playwright
+        run: npx playwright install firefox --with-deps
+
+      - name: Gerar specs BDD
+        run: npx bddgen
+
+      - name: Executar testes — Firefox
+        run: npx playwright test --project=firefox
+
+      - name: Upload do relatório — Firefox
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-firefox
+          path: playwright-report/
+          retention-days: 30
+
+  # ──────────────────────────────────────────────────────────────────
+  # JOB 3: WebKit (Safari)
+  # ──────────────────────────────────────────────────────────────────
+  test-webkit:
+    name: 🔵 WebKit (Safari)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar browsers do Playwright
+        run: npx playwright install webkit --with-deps
+
+      - name: Gerar specs BDD
+        run: npx bddgen
+
+      - name: Executar testes — WebKit
+        run: npx playwright test --project=webkit
+
+      - name: Upload do relatório — WebKit
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-webkit
+          path: playwright-report/
+          retention-days: 30
+
+  # ──────────────────────────────────────────────────────────────────
+  # JOB 4: Smoke Tests (todos os browsers, rápido)
+  # ──────────────────────────────────────────────────────────────────
+  test-smoke:
+    name: 🚀 Smoke Tests (todos os browsers)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar todos os browsers
+        run: npx playwright install --with-deps
+
+      - name: Gerar specs BDD
+        run: npx bddgen
+
+      - name: Executar Smoke Tests — 3 browsers em paralelo
+        run: npx playwright test --grep @smoke
+
+      - name: Upload do relatório — Smoke
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-smoke
+          path: playwright-report/
+          retention-days: 15

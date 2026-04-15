@@ -1,0 +1,102 @@
+# ─────────────────────────────────────────────────────────────────────
+# docker-compose.yml — Challenge QA +A Educação
+#
+# Orquestra a execução dos testes Playwright em Docker.
+#
+# COMO USAR:
+#   # Executar todos os testes (Chromium + Firefox + WebKit):
+#   docker compose up --build
+#
+#   # Executar apenas um browser específico:
+#   docker compose run tests-chromium
+#   docker compose run tests-firefox
+#   docker compose run tests-webkit
+#
+#   # Ver o relatório HTML após execução:
+#   open playwright-report/index.html
+# ─────────────────────────────────────────────────────────────────────
+
+version: '3.8'
+
+services:
+
+  # ── SERVIÇO PRINCIPAL: todos os browsers ────────────────────────────
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-all-browsers
+    environment:
+      - CI=true
+    volumes:
+      # Monta os diretórios de resultado para acesso fora do container
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: >
+      sh -c "npx bddgen &&
+             npx playwright test
+             --reporter=list,html,junit"
+
+  # ── SERVIÇO: somente Chromium ────────────────────────────────────────
+  tests-chromium:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-chromium
+    environment:
+      - CI=true
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: >
+      sh -c "npx bddgen &&
+             npx playwright test --project=chromium
+             --reporter=list,html,junit"
+
+  # ── SERVIÇO: somente Firefox ─────────────────────────────────────────
+  tests-firefox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-firefox
+    environment:
+      - CI=true
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: >
+      sh -c "npx bddgen &&
+             npx playwright test --project=firefox
+             --reporter=list,html,junit"
+
+  # ── SERVIÇO: somente WebKit (Safari) ────────────────────────────────
+  tests-webkit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-webkit
+    environment:
+      - CI=true
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: >
+      sh -c "npx bddgen &&
+             npx playwright test --project=webkit
+             --reporter=list,html,junit"
+
+  # ── SERVIÇO: somente smoke tests ─────────────────────────────────────
+  tests-smoke:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-smoke
+    environment:
+      - CI=true
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+    command: >
+      sh -c "npx bddgen &&
+             npx playwright test --grep @smoke
+             --reporter=list,html"

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios de Performance — k6</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; color: #333; }
+    h1 { font-size: 1.5rem; margin-bottom: 4px; }
+    p { color: #666; margin-top: 0; }
+    .card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px 24px; margin: 16px 0; display: flex; justify-content: space-between; align-items: center; }
+    .card h2 { margin: 0 0 4px; font-size: 1rem; }
+    .card span { font-size: 0.85rem; color: #666; }
+    .badge { background: #22c55e; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; }
+    a.btn { background: #1a1a2e; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.9rem; }
+    a.btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+  <h1>Relatórios de Performance — k6</h1>
+  <p>Testes de carga executados contra <strong>quickpizza.grafana.com</strong></p>
+
+  <div class="card">
+    <div>
+      <h2>Cenário 100 VUs — Load Test</h2>
+      <span>p95: 223 ms &nbsp;·&nbsp; Erros: 0% &nbsp;·&nbsp; 56,7 req/s</span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="badge">✓ PASSOU</span>
+      <a class="btn" href="report-100-users.html">Ver relatório</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h2>Cenário 500 VUs — Load Test</h2>
+      <span>p95: 236 ms &nbsp;·&nbsp; Erros: 0% &nbsp;·&nbsp; 253,6 req/s</span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="badge">✓ PASSOU</span>
+      <a class="btn" href="report-500-users.html">Ver relatório</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h2>Cenário 1000 VUs — Stress Test</h2>
+      <span>p95: 247 ms &nbsp;·&nbsp; Erros: 0% &nbsp;·&nbsp; 644,1 req/s</span>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="badge">✓ PASSOU</span>
+      <a class="btn" href="report-1000-users.html">Ver relatório</a>
+    </div>
+  </div>
+</body>
+</html>
