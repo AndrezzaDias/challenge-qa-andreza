@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 60
     defaults:
       run:
-        working-directory: tests
+        working-directory: challenge-qa
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: tests/package-lock.json
+          cache-dependency-path: challenge-qa/package-lock.json
 
       - name: Instalar dependências
         run: npm ci
@@ -47,7 +47,7 @@ jobs:
         if: always()
         with:
           name: playwright-report-chromium
-          path: tests/playwright-report/
+          path: challenge-qa/playwright-report/
           retention-days: 30
 
       - name: Upload dos resultados JUnit — Chromium
@@ -55,7 +55,7 @@ jobs:
         if: always()
         with:
           name: junit-results-chromium
-          path: tests/test-results/junit.xml
+          path: challenge-qa/test-results/junit.xml
           retention-days: 30
 
   # ──────────────────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ jobs:
     timeout-minutes: 60
     defaults:
       run:
-        working-directory: tests
+        working-directory: challenge-qa
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -77,7 +77,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: tests/package-lock.json
+          cache-dependency-path: challenge-qa/package-lock.json
 
       - name: Instalar dependências
         run: npm ci
@@ -96,7 +96,7 @@ jobs:
         if: always()
         with:
           name: playwright-report-firefox
-          path: tests/playwright-report/
+          path: challenge-qa/playwright-report/
           retention-days: 30
 
   # ──────────────────────────────────────────────────────────────────
@@ -108,7 +108,7 @@ jobs:
     timeout-minutes: 60
     defaults:
       run:
-        working-directory: tests
+        working-directory: challenge-qa
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -118,7 +118,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: tests/package-lock.json
+          cache-dependency-path: challenge-qa/package-lock.json
 
       - name: Instalar dependências
         run: npm ci
@@ -137,7 +137,7 @@ jobs:
         if: always()
         with:
           name: playwright-report-webkit
-          path: tests/playwright-report/
+          path: challenge-qa/playwright-report/
           retention-days: 30
 
   # ──────────────────────────────────────────────────────────────────
@@ -149,7 +149,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: tests
+        working-directory: challenge-qa
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -159,7 +159,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: tests/package-lock.json
+          cache-dependency-path: challenge-qa/package-lock.json
 
       - name: Instalar dependências
         run: npm ci
@@ -178,5 +178,5 @@ jobs:
         if: always()
         with:
           name: playwright-report-smoke
-          path: tests/playwright-report/
+          path: challenge-qa/playwright-report/
           retention-days: 15
