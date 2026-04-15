@@ -16,6 +16,9 @@ on:
 jobs:
   performance:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: k6-performance
 
     steps:
       - name: Checkout
@@ -28,20 +31,19 @@ jobs:
         run: mkdir -p reports
 
       - name: Executar cenário ${{ github.event.inputs.scenario }} VUs
-        working-directory: ${{ github.workspace }}
         run: k6 run scripts/scenario-${{ github.event.inputs.scenario }}-users.js
 
       - name: Salvar relatório como artefato
         uses: actions/upload-artifact@v4
         with:
           name: relatorio-${{ github.event.inputs.scenario }}-users
-          path: reports/
+          path: k6-performance/reports/
           retention-days: 30
 
       - name: Publicar no GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: reports
+          publish_dir: k6-performance/reports
           keep_files: true
           destination_dir: reports
